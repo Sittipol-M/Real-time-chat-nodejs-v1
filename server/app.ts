@@ -7,10 +7,13 @@ const io = new Server(3000, {
 })
 
 io.on("connection", (socket) => {
-    console.log("user connect")
-    console.log(socket.id);
-    socket.emit("socket-name", "message-emit")
-    socket.on("new-user", (message) => {
+    socket.on("join-room", ({ name, room }) => {
+        console.log(`${name} joined`)
+    })
+    socket.on("disconnect-room", ({ name, room }) => {
+        console.log(`${name} joined`)
+    })
+    socket.on("send-message", ({ message }) => {
         console.log(message)
     })
 })
