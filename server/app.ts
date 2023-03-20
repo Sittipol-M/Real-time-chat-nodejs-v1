@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 
-const io = new Server(3000, {
+const io = new Server(1000, {
     cors: {
         origin: "*",
     }
@@ -17,3 +17,4 @@ io.on("connection", (socket) => {
         console.log(message)
     })
 })
+
