@@ -1,20 +1,22 @@
+import { createServer } from "http";
 import { Server } from "socket.io";
 
-const io = new Server(1000, {
-    cors: {
-        origin: "*",
-    }
-})
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*",
+    credentials: true,
+  },
+});
 
 io.on("connection", (socket) => {
-    socket.on("join-room", ({ name, room }) => {
-        console.log(`${name} joined`)
-    })
-    socket.on("disconnect-room", ({ name, room }) => {
-        console.log(`${name} joined`)
-    })
-    socket.on("send-message", ({ message }) => {
-        console.log(message)
-    })
-})
+  console.log("user connected");
+  socket.on("message", ({ message }) => {
+    socket.broadcast.emit("receive-message", { id: socket.id, message });
+  });
+});
 
+const PORT = 4000;
+httpServer.listen(PORT, () => {
+  console.log(`This server is listening on port ${PORT} `);
+});

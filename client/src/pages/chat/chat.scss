@@ -1,0 +1,27 @@
+.chatContainer {
+  width: 100%;
+  height: 100%;
+  .displayMessages {
+    .displayMessage {
+      height: 30px;
+      text-align: start;
+    }
+    .right {
+      text-align: end;
+    }
+  }
+  .addMessage {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    input {
+      width: 90%;
+    }
+    button {
+      width: 10%;
+    }
+  }
+}
